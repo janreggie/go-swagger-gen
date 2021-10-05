@@ -1,18 +1,15 @@
-Go Swagger Generator
-==================
+# Go Swagger Generator
 
 Go Swagger Generator is a tool to parse Golang source files and generate Swagger json.
 
 Tool is based on [go-swagger](https://github.com/go-swagger/go-swagger)
 and supports everything that go-swagger supports, but allows to define responses and parameters as yaml.
 
-Why?
-----
+## Why?
 
 Go-swagger expects separate structure for every response, but in my case we generate it dynamically in controller.
 
-Example
--------
+## Example
 
 ```go
 // swagger:route PUT /packages/{id} Package packagePut
@@ -50,12 +47,11 @@ func PackagePut() http.HandlerFunc {
 }
 ```
 
-Usage
------
+## Usage
 
 `go-swagger-gen spec -m -i third_party_swagger.json -b project/cmd/http -o swagger.json --compact`
 
-```
+```none
 Usage:
   go-swagger-gen [OPTIONS] spec [spec-OPTIONS]
 
@@ -72,19 +68,17 @@ Help Options:
       -i, --input=       the file to use as input
 ```
 
-Documentation
--------------
+## Documentation
 
 Please refer to [go-swagger documentation](https://goswagger.io/generate/spec.html), swagger.json section.
 
-What is new compare to go-swagger
--------------
+## What is new compare to go-swagger
 
 ### Parameters shortcuts
 
 Allows to define route params in short form:
 
-```
+```none
 // swagger:route ...
 //
 // Parameters:
@@ -92,6 +86,7 @@ Allows to define route params in short form:
 ```
 
 Where:
+
 - `name` - parameter name
 - `type` - any go type or struct with `swagger:model` annotation
 - `place` - path/query/header/body/formData
@@ -99,18 +94,18 @@ Where:
 
 ### Parameters yaml
 
-```
+```none
 // swagger:route ...
 //
 // Parameters:
 // | valid swagger parameters yaml as array
 ```
 
-Just put here normal swagger yaml, but prepend it with `| ` symbol.
+Just put here normal swagger yaml, but prepend it with `|` symbol.
 
 ### Response yaml
 
-```
+```none
 // swagger:route ...
 //
 // Responses:
@@ -119,10 +114,11 @@ Just put here normal swagger yaml, but prepend it with `| ` symbol.
 ```
 
 Where:
+
 - `code` - integer response code
 - `description` - response description
 
-Just put here normal swagger yaml, but prepend it with `| ` symbol.
+Just put here normal swagger yaml, but prepend it with `|` symbol.
 
 ### Define string format of struct field in comment
 
@@ -173,7 +169,7 @@ type MyModel struct {
 
 Aliases in swagger.json present as native types. Therefore all validation comments work as expected for them.
 
-(similar fix was merged to go-swagger https://github.com/go-swagger/go-swagger/pull/1087, but works slightly different)
+(similar fix was merged to go-swagger <https://github.com/go-swagger/go-swagger/pull/1087>, but works slightly different)
 
 ### x-go-name extension was removed
 
