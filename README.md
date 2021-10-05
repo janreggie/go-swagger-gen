@@ -5,6 +5,11 @@ Go Swagger Generator is a tool to parse Golang source files and generate Swagger
 Tool is based on [go-swagger](https://github.com/go-swagger/go-swagger)
 and supports everything that go-swagger supports, but allows to define responses and parameters as yaml.
 
+## Issues
+
+Tests don't work.
+Probably something about <golang.org/x/tools/go/loader> not liking modules.
+
 ## Why?
 
 Go-swagger expects separate structure for every response, but in my case we generate it dynamically in controller.
